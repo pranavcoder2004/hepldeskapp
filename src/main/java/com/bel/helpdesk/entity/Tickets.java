@@ -28,9 +28,13 @@ void save(){
     if(this.createdAt==null){
         this.createdAt = new Date();
     }
+    this.updateAt =new Date();
 
 }
+
     private Date createdAt;
+
+
     @CreationTimestamp()
     private Date updateAt;
 

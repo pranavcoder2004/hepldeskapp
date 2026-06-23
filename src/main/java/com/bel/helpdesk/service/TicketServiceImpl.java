@@ -4,13 +4,16 @@ import com.bel.helpdesk.entity.Tickets;
 import com.bel.helpdesk.repository.TicketsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TicketServiceImpl implements TicketService {
     @Autowired
     TicketsRepository repository;
     @Override
+    @Transactional
     public Tickets createTicket(Tickets tickets) {
+        tickets.setTicketId(null);
         return repository.save(tickets);
     }
 
