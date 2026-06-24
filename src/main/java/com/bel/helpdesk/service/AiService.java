@@ -18,11 +18,12 @@ public class AiService {
     Resource resource;
 
 
-
+    @Autowired
+    DataBaseTool dataBaseTool;
 
 
     public String getResponseFromAssistant(String query,String userId){
-       return chatClient.prompt().tools(new DataBaseTool()).user(query).system(resource).advisors(u-> u.param(ChatMemory.CONVERSATION_ID,userId)).call().chatResponse().getResult().getOutput().getText();
+       return chatClient.prompt().tools(dataBaseTool).user(query).system(resource).advisors(u-> u.param(ChatMemory.CONVERSATION_ID,userId)).call().chatResponse().getResult().getOutput().getText();
     }
 
 }

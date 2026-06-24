@@ -2,10 +2,14 @@ package com.bel.helpdesk.tool;
 
 import com.bel.helpdesk.entity.Tickets;
 import com.bel.helpdesk.service.TicketService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Slf4j
+@Component
 public class DataBaseTool {
     @Autowired
     TicketService ticketService;
@@ -14,9 +18,10 @@ public class DataBaseTool {
     public String createTicket(@ToolParam(description = "its is required to create new ticket") Tickets tickets){
         try {
             Tickets t = ticketService.createTicket(tickets);
+            log.info("tools are running");
             return "ticket created  with id " + t.getTicketId();
         } catch (RuntimeException e) {
-            e.printStackTrace();
+            System.out.println("error block " + e);
             return null;
         }
 

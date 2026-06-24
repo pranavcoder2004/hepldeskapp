@@ -1,9 +1,7 @@
 package com.bel.helpdesk.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -12,13 +10,17 @@ import java.util.Date;
 @Table(name ="Tickets")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Tickets {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketId;
 
     @Lob
-    private String issueSummary;
+    private String summary;
 
     @Enumerated(EnumType.STRING)
     private Priority priority;
